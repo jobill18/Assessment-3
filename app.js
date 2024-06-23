@@ -89,3 +89,8 @@ app.get("/top-fossils", (req, res) => {
     trex,
   });
 });
+
+app.post("/", (req, res) => {
+  req.session.name = document.querySelector();
+  res.render("homepage.html.njk");
+});
