@@ -7,10 +7,32 @@
     <title>Most Liked Fossils</title>
   </head>
   <body>
+    {% for dino in fossils %}
     <div class="fossil-div">
-      <h3>{{ fossils[0].name }}</h3>
-      <h2>Liked {{ fossils[0].num_likes }} times.</h2>
-      <img src="{{ fossils[0].img }}" />
+      <h3>{{ dino.name }}</h3>
+      <img src="{{ dino.img }}" />
+      <h2>Liked {{ dino.num_likes }} times.</h2>
+    </div>
+    {% endfor %}
+    <div class="fossil-div">
+      <h3>{{ aust.name }}</h3>
+      <img src="{{ aust.img }}" />
+      <h2>Liked {{ aust.num_likes }} times.</h2>
+    </div>
+    <div class="fossil-div">
+      <h3>{{ quetz.name }}</h3>
+      <img src="{{ quetz.img }}" />
+      <h2>Liked {{ quetz.num_likes }} times.</h2>
+    </div>
+    <div class="fossil-div">
+      <h3>{{ steg.name }}</h3>
+      <img src="{{ steg.img }}" />
+      <h2>Liked {{ steg.num_likes }} times.</h2>
+    </div>
+    <div class="fossil-div">
+      <h3>{{ trex.name }}</h3>
+      <img src="{{ trex.img }}" />
+      <h2>Liked {{ trex.num_likes }} times.</h2>
     </div>
   </body>
 </html>
