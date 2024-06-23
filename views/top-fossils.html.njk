@@ -1,13 +1,15 @@
 {% extends 'base.html.njk' %}
 {% block body %}
     <h1>Welcome {{name}}!</h1>
-    {% for dino in fossils %}
-    <div class="fossil-div">
-      <h3>{{ dino.name }}</h3>
-      <img src="{{ dino.img }}" />
-      <h2>Liked {{ dino.num_likes }} times.</h2>
-    </div>
-    {% endfor %}
+    <form action = '/like-fossil'>
+      <label for='fossil'>Pick your favorite fossil!</label>
+      <select name='fossil' id='fossil'>
+        <option value="aust">Australopithecus</option>
+        <option value="quetz">Quetzal</option>
+        <option value="steg">Stegosaurus</option>
+        <option value="trex">Tyrannosaurus Rex</option>
+      </select>
+    </form>
     <div class="fossil-div">
       <h3>{{ aust.name }}</h3>
       <img src="{{ aust.img }}" />
