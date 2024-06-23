@@ -74,26 +74,34 @@ ViteExpress.listen(app, port, () => {
 });
 
 app.get("/top-fossils", (req, res) => {
-  const fossils = MOST_LIKED_FOSSILS;
-  const aust = fossils.aust;
-  const quetz = fossils.quetz;
-  const steg = fossils.steg;
-  const trex = fossils.trex;
-  const name = req.session.name;
+  if (!req.session.name) {
+    res.redirect("/");
+  } else {
+    const fossils = MOST_LIKED_FOSSILS;
+    const aust = fossils.aust;
+    const quetz = fossils.quetz;
+    const steg = fossils.steg;
+    const trex = fossils.trex;
+    const name = req.session.name;
 
-  console.log(fossils.aust);
-  res.render("top-fossils.html.njk", {
-    fossils,
-    aust,
-    quetz,
-    steg,
-    trex,
-    name,
-  });
+    console.log(fossils.aust);
+    res.render("top-fossils.html.njk", {
+      fossils,
+      aust,
+      quetz,
+      steg,
+      trex,
+      name,
+    });
+  }
 });
 
 app.get("/", (req, res) => {
-  res.render("homepage.html.njk");
+  if (req.session.name) {
+    res.redirect("/top-fossils");
+  } else {
+    res.render("homepage.html.njk");
+  }
 });
 
 app.get("/get-name", (req, res) => {
