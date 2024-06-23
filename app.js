@@ -79,6 +79,7 @@ app.get("/top-fossils", (req, res) => {
   const quetz = fossils.quetz;
   const steg = fossils.steg;
   const trex = fossils.trex;
+  const name = req.session.name;
 
   console.log(fossils.aust);
   res.render("top-fossils.html.njk", {
@@ -87,10 +88,16 @@ app.get("/top-fossils", (req, res) => {
     quetz,
     steg,
     trex,
+    name,
   });
 });
 
-app.post("/", (req, res) => {
-  req.session.name = document.querySelector();
+app.get("/", (req, res) => {
   res.render("homepage.html.njk");
+});
+
+app.get("/get-name", (req, res) => {
+  const name = req.query.name;
+  req.session.name = name;
+  res.redirect("/top-fossils");
 });
