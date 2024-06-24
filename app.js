@@ -67,6 +67,7 @@ const OTHER_FOSSILS = [
 app.get("/random-fossil.json", (req, res) => {
   const randomFossil = lodash.sample(OTHER_FOSSILS);
   res.json(randomFossil);
+  console.log(randomFossil);
 });
 
 ViteExpress.listen(app, port, () => {
@@ -84,7 +85,7 @@ app.get("/top-fossils", (req, res) => {
     const trex = fossils.trex;
     const name = req.session.name;
 
-    console.log(fossils.aust);
+    console.log(fossils[req.session.fossil]);
     res.render("top-fossils.html.njk", {
       fossils,
       aust,
@@ -108,4 +109,13 @@ app.get("/get-name", (req, res) => {
   const name = req.query.name;
   req.session.name = name;
   res.redirect("/top-fossils");
+});
+
+app.get("/like-fossil", (req, res) => {
+  req.session.fossil = req.query.fossil;
+  const fossil = req.session.fossil;
+  MOST_LIKED_FOSSILS[fossil].num_likes += 1;
+  const name = req.session.name;
+  console.log(MOST_LIKED_FOSSILS);
+  res.render("thank-you.html.njk", { name: req.session.name });
 });
